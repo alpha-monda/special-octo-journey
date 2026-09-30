@@ -33,7 +33,7 @@ AI AGENCY XYZ is a responsive SaaS marketing site and client dashboard for an AI
 - `/dashboard` — responsive call analytics demo workspace
 - `/agent` — "Talk to it" browser demo against the master Retell demo agent (see `docs/retell-demo-agent.md`)
 - `/api/demo/web-call` — server route that verifies Turnstile, rate-limits, and creates the Retell web call
-- `/api/retell/webhook` — Retell call events (signature-verified); emails demo call summaries and transcripts via Resend
+- `/api/retell/webhook` — Retell call events (signature-verified); emails demo call summaries and transcripts (Hostinger SMTP, or Resend)
 
 ## Conventions
 

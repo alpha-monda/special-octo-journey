@@ -69,16 +69,17 @@ Set these in **Netlify → Project configuration → Environment variables**
 | `TURNSTILE_SECRET_KEY` | Cloudflare Turnstile **secret key** |
 | `DEMO_IP_SALT` | Any long random string; used to hash visitor IPs |
 | `DEMO_DAILY_CAP` | Optional. Max demo calls per day across all visitors (default 150) |
-| `RESEND_API_KEY` | Resend API key, used to send the demo call emails |
 | `DEMO_NOTIFY_EMAIL` | Where demo call summaries go (comma-separate multiple addresses) |
-| `EMAIL_FROM` | Optional sender, e.g. `AI AGENCY XYZ <calls@aiagencyxyz.com>` once the domain is verified in Resend |
+| `SMTP_USER` | The Hostinger mailbox that sends the emails, e.g. `hello@aiagencyxyz.com` |
+| `SMTP_PASSWORD` | That mailbox's password (mark it as a secret in Netlify) |
 
 **Retell API key:** the webhook is verified with `RETELL_API_KEY`, so use the Retell key
 that has the **webhook** badge in Retell's API Keys page.
 
-**Resend:** sign up at resend.com. Until you verify `aiagencyxyz.com` (Resend → Domains, then
-add the DNS records it shows you at Hostinger), emails come from `onboarding@resend.dev`
-and can only go to the email address you signed up to Resend with.
+**Sending email:** demo call emails are sent from your Hostinger mailbox over SMTP
+(`smtp.hostinger.com`, port 465). Nothing else to set up; no DNS changes needed.
+Optional overrides: `SMTP_HOST`, `SMTP_PORT`, `EMAIL_FROM` (e.g. `AI AGENCY XYZ <hello@aiagencyxyz.com>`).
+Resend is also supported instead (`RESEND_API_KEY`); SMTP wins if both are set.
 
 To get Turnstile keys, go to the Cloudflare dashboard: **Turnstile → Add widget**, and add the
 hostnames `aiagencyxyz.com` and `localhost`. It's free and doesn't require moving DNS
