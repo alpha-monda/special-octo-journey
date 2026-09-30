@@ -14,7 +14,9 @@ import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ConsultingRouteImport } from './routes/consulting'
+import { Route as AgentRouteImport } from './routes/agent'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiDemoWebCallRouteImport } from './routes/api/demo/web-call'
 
 const ProductsRoute = ProductsRouteImport.update({
   id: '/products',
@@ -41,60 +43,95 @@ const ConsultingRoute = ConsultingRouteImport.update({
   path: '/consulting',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AgentRoute = AgentRouteImport.update({
+  id: '/agent',
+  path: '/agent',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiDemoWebCallRoute = ApiDemoWebCallRouteImport.update({
+  id: '/api/demo/web-call',
+  path: '/api/demo/web-call',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/agent': typeof AgentRoute
   '/consulting': typeof ConsultingRoute
   '/dashboard': typeof DashboardRoute
   '/faq': typeof FaqRoute
   '/pricing': typeof PricingRoute
   '/products': typeof ProductsRoute
+  '/api/demo/web-call': typeof ApiDemoWebCallRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/agent': typeof AgentRoute
   '/consulting': typeof ConsultingRoute
   '/dashboard': typeof DashboardRoute
   '/faq': typeof FaqRoute
   '/pricing': typeof PricingRoute
   '/products': typeof ProductsRoute
+  '/api/demo/web-call': typeof ApiDemoWebCallRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/agent': typeof AgentRoute
   '/consulting': typeof ConsultingRoute
   '/dashboard': typeof DashboardRoute
   '/faq': typeof FaqRoute
   '/pricing': typeof PricingRoute
   '/products': typeof ProductsRoute
+  '/api/demo/web-call': typeof ApiDemoWebCallRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/consulting' | '/dashboard' | '/faq' | '/pricing' | '/products'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/consulting' | '/dashboard' | '/faq' | '/pricing' | '/products'
-  id:
-    | '__root__'
     | '/'
+    | '/agent'
     | '/consulting'
     | '/dashboard'
     | '/faq'
     | '/pricing'
     | '/products'
+    | '/api/demo/web-call'
+  fileRoutesByTo: FileRoutesByTo
+  to:
+    | '/'
+    | '/agent'
+    | '/consulting'
+    | '/dashboard'
+    | '/faq'
+    | '/pricing'
+    | '/products'
+    | '/api/demo/web-call'
+  id:
+    | '__root__'
+    | '/'
+    | '/agent'
+    | '/consulting'
+    | '/dashboard'
+    | '/faq'
+    | '/pricing'
+    | '/products'
+    | '/api/demo/web-call'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AgentRoute: typeof AgentRoute
   ConsultingRoute: typeof ConsultingRoute
   DashboardRoute: typeof DashboardRoute
   FaqRoute: typeof FaqRoute
   PricingRoute: typeof PricingRoute
   ProductsRoute: typeof ProductsRoute
+  ApiDemoWebCallRoute: typeof ApiDemoWebCallRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -134,6 +171,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ConsultingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/agent': {
+      id: '/agent'
+      path: '/agent'
+      fullPath: '/agent'
+      preLoaderRoute: typeof AgentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -141,16 +185,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/demo/web-call': {
+      id: '/api/demo/web-call'
+      path: '/api/demo/web-call'
+      fullPath: '/api/demo/web-call'
+      preLoaderRoute: typeof ApiDemoWebCallRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AgentRoute: AgentRoute,
   ConsultingRoute: ConsultingRoute,
   DashboardRoute: DashboardRoute,
   FaqRoute: FaqRoute,
   PricingRoute: PricingRoute,
   ProductsRoute: ProductsRoute,
+  ApiDemoWebCallRoute: ApiDemoWebCallRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

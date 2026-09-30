@@ -34,6 +34,7 @@ netlify dev --port 8889
 - `/consulting` — startup and implementation service details
 - `/faq` — interactive service questions
 - `/dashboard` — sample call analytics, outcomes, and recent conversations
+- `/agent` — "Talk to it" live browser demo (setup: `docs/retell-demo-agent.md`)
 
 ## Database
 

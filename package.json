@@ -18,6 +18,8 @@
     "lucide-react": "0.576.0",
     "react": "19.2.8",
     "react-dom": "19.2.8",
+    "retell-client-js-sdk": "^3.0.1",
+    "retell-sdk": "^6.0.1",
     "tailwindcss": "4.2.2",
     "vite-tsconfig-paths": "6.1.1"
   },

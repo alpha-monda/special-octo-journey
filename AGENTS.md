@@ -15,7 +15,8 @@ AI AGENCY XYZ is a responsive SaaS marketing site and client dashboard for an AI
 ## Key Directories
 
 - `src/routes/` — public pages and the client dashboard
-- `src/components/` — shared site header and footer
+- `src/components/` — shared site header, footer, and Turnstile widget
+- `src/server/` — server-only helpers (Retell, rate limits); never import from client components
 - `src/styles.css` — all design tokens, layout rules, animation, and responsive behavior
 - `db/schema.ts` — source of truth for the Postgres schema
 - `db/index.ts` — Netlify Database Drizzle client
@@ -30,6 +31,8 @@ AI AGENCY XYZ is a responsive SaaS marketing site and client dashboard for an AI
 - `/consulting` — implementation and consulting services
 - `/faq` — interactive service FAQ
 - `/dashboard` — responsive call analytics demo workspace
+- `/agent` — "Talk to it" browser demo against the master Retell demo agent (see `docs/retell-demo-agent.md`)
+- `/api/demo/web-call` — server route that verifies Turnstile, rate-limits, and creates the Retell web call
 
 ## Conventions
 

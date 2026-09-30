@@ -1,4 +1,4 @@
-import { boolean, integer, jsonb, pgTable, serial, text, timestamp } from 'drizzle-orm/pg-core'
+import { boolean, index, integer, jsonb, pgTable, serial, text, timestamp } from 'drizzle-orm/pg-core'
 
 export const organizations = pgTable('organizations', {
   id: serial().primaryKey(),
@@ -47,3 +47,17 @@ export const integrations = pgTable('integrations', {
   lastSyncedAt: timestamp('last_synced_at'),
   createdAt: timestamp('created_at').defaultNow().notNull(),
 })
+
+// One row per accepted "Talk to it" demo request. Used for per-IP and global
+// rate limits; the IP is stored only as a salted SHA-256 hash.
+export const demoCallAttempts = pgTable(
+  'demo_call_attempts',
+  {
+    id: serial().primaryKey(),
+    ipHash: text('ip_hash').notNull(),
+    retellCallId: text('retell_call_id'),
+    businessType: text('business_type'),
+    createdAt: timestamp('created_at').defaultNow().notNull(),
+  },
+  (table) => [index('demo_call_attempts_ip_created_idx').on(table.ipHash, table.createdAt)],
+)
