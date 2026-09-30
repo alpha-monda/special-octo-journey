@@ -16,6 +16,7 @@ import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ConsultingRouteImport } from './routes/consulting'
 import { Route as AgentRouteImport } from './routes/agent'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiRetellWebhookRouteImport } from './routes/api/retell/webhook'
 import { Route as ApiDemoWebCallRouteImport } from './routes/api/demo/web-call'
 
 const ProductsRoute = ProductsRouteImport.update({
@@ -53,6 +54,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiRetellWebhookRoute = ApiRetellWebhookRouteImport.update({
+  id: '/api/retell/webhook',
+  path: '/api/retell/webhook',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiDemoWebCallRoute = ApiDemoWebCallRouteImport.update({
   id: '/api/demo/web-call',
   path: '/api/demo/web-call',
@@ -68,6 +74,7 @@ export interface FileRoutesByFullPath {
   '/pricing': typeof PricingRoute
   '/products': typeof ProductsRoute
   '/api/demo/web-call': typeof ApiDemoWebCallRoute
+  '/api/retell/webhook': typeof ApiRetellWebhookRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -78,6 +85,7 @@ export interface FileRoutesByTo {
   '/pricing': typeof PricingRoute
   '/products': typeof ProductsRoute
   '/api/demo/web-call': typeof ApiDemoWebCallRoute
+  '/api/retell/webhook': typeof ApiRetellWebhookRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -89,6 +97,7 @@ export interface FileRoutesById {
   '/pricing': typeof PricingRoute
   '/products': typeof ProductsRoute
   '/api/demo/web-call': typeof ApiDemoWebCallRoute
+  '/api/retell/webhook': typeof ApiRetellWebhookRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -101,6 +110,7 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/products'
     | '/api/demo/web-call'
+    | '/api/retell/webhook'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -111,6 +121,7 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/products'
     | '/api/demo/web-call'
+    | '/api/retell/webhook'
   id:
     | '__root__'
     | '/'
@@ -121,6 +132,7 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/products'
     | '/api/demo/web-call'
+    | '/api/retell/webhook'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -132,6 +144,7 @@ export interface RootRouteChildren {
   PricingRoute: typeof PricingRoute
   ProductsRoute: typeof ProductsRoute
   ApiDemoWebCallRoute: typeof ApiDemoWebCallRoute
+  ApiRetellWebhookRoute: typeof ApiRetellWebhookRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -185,6 +198,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/retell/webhook': {
+      id: '/api/retell/webhook'
+      path: '/api/retell/webhook'
+      fullPath: '/api/retell/webhook'
+      preLoaderRoute: typeof ApiRetellWebhookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/demo/web-call': {
       id: '/api/demo/web-call'
       path: '/api/demo/web-call'
@@ -204,6 +224,7 @@ const rootRouteChildren: RootRouteChildren = {
   PricingRoute: PricingRoute,
   ProductsRoute: ProductsRoute,
   ApiDemoWebCallRoute: ApiDemoWebCallRoute,
+  ApiRetellWebhookRoute: ApiRetellWebhookRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

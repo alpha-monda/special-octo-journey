@@ -18,7 +18,10 @@ In the Retell dashboard: **Agents → Create → Single Prompt (Retell LLM)**.
 - **Prompt:** paste the prompt below.
 - **Max call duration:** 3 minutes. The site also enforces this per call, but
   setting it on the agent is a second safety net.
-- **Webhook URL:** leave empty for now (Phase 6 adds it for customer agents).
+- **Webhook URL:** `https://aiagencyxyz.com/api/retell/webhook`. After each demo call,
+  Retell sends the call here and the site emails the summary and transcript to
+  `DEMO_NOTIFY_EMAIL`. Keep the default webhook events (they include `call_analyzed`).
+- **Post-call analysis:** leave the default call summary turned on.
 
 Copy the agent ID (starts with `agent_`); it goes into `RETELL_DEMO_AGENT_ID`.
 
@@ -66,6 +69,16 @@ Set these in **Netlify → Project configuration → Environment variables**
 | `TURNSTILE_SECRET_KEY` | Cloudflare Turnstile **secret key** |
 | `DEMO_IP_SALT` | Any long random string; used to hash visitor IPs |
 | `DEMO_DAILY_CAP` | Optional. Max demo calls per day across all visitors (default 150) |
+| `RESEND_API_KEY` | Resend API key, used to send the demo call emails |
+| `DEMO_NOTIFY_EMAIL` | Where demo call summaries go (comma-separate multiple addresses) |
+| `EMAIL_FROM` | Optional sender, e.g. `AI AGENCY XYZ <calls@aiagencyxyz.com>` once the domain is verified in Resend |
+
+**Retell API key:** the webhook is verified with `RETELL_API_KEY`, so use the Retell key
+that has the **webhook** badge in Retell's API Keys page.
+
+**Resend:** sign up at resend.com. Until you verify `aiagencyxyz.com` (Resend → Domains, then
+add the DNS records it shows you at Hostinger), emails come from `onboarding@resend.dev`
+and can only go to the email address you signed up to Resend with.
 
 To get Turnstile keys, go to the Cloudflare dashboard: **Turnstile → Add widget**, and add the
 hostnames `aiagencyxyz.com` and `localhost`. It's free and doesn't require moving DNS

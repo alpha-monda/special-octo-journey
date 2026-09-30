@@ -49,7 +49,8 @@ export const integrations = pgTable('integrations', {
 })
 
 // One row per accepted "Talk to it" demo request. Used for per-IP and global
-// rate limits; the IP is stored only as a salted SHA-256 hash.
+// rate limits (the IP is stored only as a salted SHA-256 hash) and to record
+// the call summary once Retell's call_analyzed webhook arrives.
 export const demoCallAttempts = pgTable(
   'demo_call_attempts',
   {
@@ -57,6 +58,10 @@ export const demoCallAttempts = pgTable(
     ipHash: text('ip_hash').notNull(),
     retellCallId: text('retell_call_id'),
     businessType: text('business_type'),
+    durationSec: integer('duration_sec'),
+    summary: text(),
+    transcript: text(),
+    emailedAt: timestamp('emailed_at'),
     createdAt: timestamp('created_at').defaultNow().notNull(),
   },
   (table) => [index('demo_call_attempts_ip_created_idx').on(table.ipHash, table.createdAt)],
