@@ -1,10 +1,10 @@
 import { createFileRoute } from '@tanstack/react-router'
 import Retell from 'retell-sdk'
+import { handleCustomerCallEvent } from '@/server/customer-call-report'
 import { reportDemoCall, type RetellCall } from '@/server/demo-call-report'
 
-// Receives Retell call events. Set this URL as the webhook on the Retell agent.
-// Right now only the master demo agent is handled; customer agents (Phase 6)
-// will be routed here by agent_id as well.
+// Receives Retell call events for the master demo agent and every customer
+// agent (each agent's webhook_url points here). Routed by agent_id.
 export const Route = createFileRoute('/api/retell/webhook')({
   server: {
     handlers: {
@@ -20,16 +20,20 @@ export const Route = createFileRoute('/api/retell/webhook')({
         }
 
         const { event, call } = JSON.parse(rawBody) as { event?: string; call?: RetellCall }
-        if (event !== 'call_analyzed' || !call?.call_id) return new Response(null, { status: 204 })
+        if (!event || !call?.call_id || (event !== 'call_ended' && event !== 'call_analyzed')) {
+          return new Response(null, { status: 204 })
+        }
 
-        if (call.agent_id && call.agent_id === process.env.RETELL_DEMO_AGENT_ID) {
-          try {
-            await reportDemoCall(call)
-          } catch (error) {
-            // A non-2xx response makes Retell retry the webhook.
-            console.error('demo call report failed', call.call_id, error)
-            return new Response('Report failed', { status: 500 })
+        try {
+          if (call.agent_id && call.agent_id === process.env.RETELL_DEMO_AGENT_ID) {
+            if (event === 'call_analyzed') await reportDemoCall(call)
+          } else {
+            await handleCustomerCallEvent(event, call)
           }
+        } catch (error) {
+          // A non-2xx response makes Retell retry the webhook.
+          console.error('retell webhook handling failed', event, call.call_id, error)
+          return new Response('Handling failed', { status: 500 })
         }
 
         return new Response(null, { status: 204 })

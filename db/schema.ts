@@ -1,19 +1,29 @@
-import { boolean, index, integer, jsonb, pgTable, serial, text, timestamp } from 'drizzle-orm/pg-core'
+import { boolean, index, integer, jsonb, pgTable, serial, text, timestamp, uniqueIndex } from 'drizzle-orm/pg-core'
 
+// A paying customer (business). status: pending_setup | live | paused | canceled
 export const organizations = pgTable('organizations', {
   id: serial().primaryKey(),
   name: text().notNull(),
   plan: text().notNull().default('solo'),
   timezone: text().notNull().default('America/Chicago'),
+  status: text().notNull().default('pending_setup'),
+  contactName: text('contact_name'),
+  contactEmail: text('contact_email'),
+  notifyEmails: jsonb('notify_emails').$type<string[]>().notNull().default([]),
+  stripeCustomerId: text('stripe_customer_id'),
+  stripeSubscriptionId: text('stripe_subscription_id'),
   createdAt: timestamp('created_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
 })
 
 export const assistants = pgTable('assistants', {
   id: serial().primaryKey(),
   organizationId: integer('organization_id').notNull().references(() => organizations.id),
   retellAgentId: text('retell_agent_id').unique(),
+  retellLlmId: text('retell_llm_id'),
   name: text().notNull(),
   phoneNumber: text('phone_number'),
+  areaCode: integer('area_code'),
   isActive: boolean('is_active').notNull().default(true),
   createdAt: timestamp('created_at').defaultNow().notNull(),
 })
@@ -33,6 +43,7 @@ export const callRecords = pgTable('call_records', {
   sentiment: text(),
   humanReviewStatus: text('human_review_status').notNull().default('not_required'),
   metadata: jsonb().$type<Record<string, unknown>>().notNull().default({}),
+  deliveryStatus: jsonb('delivery_status').$type<Record<string, unknown>>().notNull().default({}),
   startedAt: timestamp('started_at').notNull(),
   createdAt: timestamp('created_at').defaultNow().notNull(),
 })
@@ -65,4 +76,20 @@ export const demoCallAttempts = pgTable(
     createdAt: timestamp('created_at').defaultNow().notNull(),
   },
   (table) => [index('demo_call_attempts_ip_created_idx').on(table.ipHash, table.createdAt)],
+)
+
+// Append-only history of a customer's agent settings. The highest version is
+// what's live; restoring an old version appends a copy as a new version.
+export const agentSettingsVersions = pgTable(
+  'agent_settings_versions',
+  {
+    id: serial().primaryKey(),
+    organizationId: integer('organization_id').notNull().references(() => organizations.id),
+    version: integer().notNull(),
+    settings: jsonb().$type<Record<string, unknown>>().notNull(),
+    note: text(),
+    createdBy: text('created_by'),
+    createdAt: timestamp('created_at').defaultNow().notNull(),
+  },
+  (table) => [uniqueIndex('agent_settings_versions_org_version_idx').on(table.organizationId, table.version)],
 )

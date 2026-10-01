@@ -17,6 +17,9 @@ AI AGENCY XYZ is a responsive SaaS marketing site and client dashboard for an AI
 - `src/routes/` — public pages and the client dashboard
 - `src/components/` — shared site header, footer, and Turnstile widget
 - `src/server/` — server-only helpers (Retell, rate limits); never import from client components
+- `src/server/*.functions.ts` — TanStack server functions (RPC) callable from routes; every admin function checks the admin cookie
+- `src/lib/agent-settings.ts` — the customer agent settings model, shared by the admin form and the future `/setup` wizard
+- `docs/build-plan.md` — current phase plan and decisions
 - `src/styles.css` — all design tokens, layout rules, animation, and responsive behavior
 - `db/schema.ts` — source of truth for the Postgres schema
 - `db/index.ts` — Netlify Database Drizzle client
@@ -33,7 +36,8 @@ AI AGENCY XYZ is a responsive SaaS marketing site and client dashboard for an AI
 - `/dashboard` — responsive call analytics demo workspace
 - `/agent` — "Talk to it" browser demo against the master Retell demo agent (see `docs/retell-demo-agent.md`)
 - `/api/demo/web-call` — server route that verifies Turnstile, rate-limits, and creates the Retell web call
-- `/api/retell/webhook` — Retell call events (signature-verified); emails demo call summaries and transcripts (Hostinger SMTP, or Resend)
+- `/api/retell/webhook` — Retell call events (signature-verified), routed by agent_id: demo calls email the owner; customer calls are stored in `call_records` and emailed to the customer
+- `/admin` — owner-only admin (password in `ADMIN_PASSWORD`): create customers, which provisions a Retell LLM + agent + phone number; edit settings with version history and restore; pause and resume; recent calls
 
 ## Conventions
 
@@ -52,6 +56,11 @@ The database includes organizations, assistants, call records, and integrations.
 The dashboard currently labels its presentation data as a demo workspace. Live ingestion should be implemented behind authenticated Netlify server code before replacing the sample records. Tenant isolation must always be enforced by organization ID on the server, never trusted from browser input alone.
 
 ## Non-Obvious Decisions
+
+- Agent settings are append-only versions (`agent_settings_versions`); the highest version is live. Restoring appends a copy. Retell is updated before the version row is written, so history only holds settings that went live.
+- Provisioning rolls back Retell resources (LLM, agent, number) on any failure so nothing bills without a customer.
+- Phone numbers bind to `agent_version: 'latest'` so settings edits reach live callers immediately.
+- The recording disclosure is always injected into the greeting (`buildBeginMessage`) and can't be removed.
 
 - Human review is represented explicitly on Levels 2–4 because it is central to the offer.
 - Startup fees are separate from subscriptions because discovery and integration complexity vary significantly.
