@@ -1,7 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { ArrowUpRight, ShoppingBag } from 'lucide-react'
-import { SiteFooter } from '@/components/SiteFooter'
-import { SiteHeader } from '@/components/SiteHeader'
+import { XyzFooter, XyzHeader } from '@/components/XyzChrome'
 
 export const Route = createFileRoute('/products')({ component: Products })
 
@@ -15,7 +14,7 @@ const products = [
 function Products() {
   return (
     <div className="page-shell cream-page">
-      <SiteHeader />
+      <XyzHeader />
       <main>
         <section className="subpage-hero product-hero">
           <p className="eyebrow"><ShoppingBag size={15} /> AI agency field goods</p>
@@ -36,7 +35,7 @@ function Products() {
         </section>
         <section className="shop-note"><span>PRINTED ON DEMAND</span><p>Storefront artwork and fulfillment hooks are ready for your final Printify catalog, designs, variants, and checkout links.</p></section>
       </main>
-      <SiteFooter />
+      <XyzFooter />
     </div>
   )
 }

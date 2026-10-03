@@ -9,12 +9,19 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WebsitesRouteImport } from './routes/websites'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as StrategyRouteImport } from './routes/strategy'
 import { Route as ProductsRouteImport } from './routes/products'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ConsultingRouteImport } from './routes/consulting'
+import { Route as BookRouteImport } from './routes/book'
+import { Route as AgentsRouteImport } from './routes/agents'
 import { Route as AgentRouteImport } from './routes/agent'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as AdminRouteRouteImport } from './routes/admin/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
@@ -24,9 +31,29 @@ import { Route as ApiRetellWebhookRouteImport } from './routes/api/retell/webhoo
 import { Route as ApiDemoWebCallRouteImport } from './routes/api/demo/web-call'
 import { Route as AdminCustomersIdRouteImport } from './routes/admin/customers.$id'
 
+const WebsitesRoute = WebsitesRouteImport.update({
+  id: '/websites',
+  path: '/websites',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StrategyRoute = StrategyRouteImport.update({
+  id: '/strategy',
+  path: '/strategy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProductsRoute = ProductsRouteImport.update({
   id: '/products',
   path: '/products',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PricingRoute = PricingRouteImport.update({
@@ -49,9 +76,24 @@ const ConsultingRoute = ConsultingRouteImport.update({
   path: '/consulting',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BookRoute = BookRouteImport.update({
+  id: '/book',
+  path: '/book',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AgentsRoute = AgentsRouteImport.update({
+  id: '/agents',
+  path: '/agents',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AgentRoute = AgentRouteImport.update({
   id: '/agent',
   path: '/agent',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminRouteRoute = AdminRouteRouteImport.update({
@@ -98,12 +140,19 @@ const AdminCustomersIdRoute = AdminCustomersIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteRouteWithChildren
+  '/about': typeof AboutRoute
   '/agent': typeof AgentRoute
+  '/agents': typeof AgentsRoute
+  '/book': typeof BookRoute
   '/consulting': typeof ConsultingRoute
   '/dashboard': typeof DashboardRoute
   '/faq': typeof FaqRoute
   '/pricing': typeof PricingRoute
+  '/privacy': typeof PrivacyRoute
   '/products': typeof ProductsRoute
+  '/strategy': typeof StrategyRoute
+  '/terms': typeof TermsRoute
+  '/websites': typeof WebsitesRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/new': typeof AdminNewRoute
   '/admin/': typeof AdminIndexRoute
@@ -113,12 +162,19 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/agent': typeof AgentRoute
+  '/agents': typeof AgentsRoute
+  '/book': typeof BookRoute
   '/consulting': typeof ConsultingRoute
   '/dashboard': typeof DashboardRoute
   '/faq': typeof FaqRoute
   '/pricing': typeof PricingRoute
+  '/privacy': typeof PrivacyRoute
   '/products': typeof ProductsRoute
+  '/strategy': typeof StrategyRoute
+  '/terms': typeof TermsRoute
+  '/websites': typeof WebsitesRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/new': typeof AdminNewRoute
   '/admin': typeof AdminIndexRoute
@@ -130,12 +186,19 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteRouteWithChildren
+  '/about': typeof AboutRoute
   '/agent': typeof AgentRoute
+  '/agents': typeof AgentsRoute
+  '/book': typeof BookRoute
   '/consulting': typeof ConsultingRoute
   '/dashboard': typeof DashboardRoute
   '/faq': typeof FaqRoute
   '/pricing': typeof PricingRoute
+  '/privacy': typeof PrivacyRoute
   '/products': typeof ProductsRoute
+  '/strategy': typeof StrategyRoute
+  '/terms': typeof TermsRoute
+  '/websites': typeof WebsitesRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/new': typeof AdminNewRoute
   '/admin/': typeof AdminIndexRoute
@@ -148,12 +211,19 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/admin'
+    | '/about'
     | '/agent'
+    | '/agents'
+    | '/book'
     | '/consulting'
     | '/dashboard'
     | '/faq'
     | '/pricing'
+    | '/privacy'
     | '/products'
+    | '/strategy'
+    | '/terms'
+    | '/websites'
     | '/admin/login'
     | '/admin/new'
     | '/admin/'
@@ -163,12 +233,19 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
     | '/agent'
+    | '/agents'
+    | '/book'
     | '/consulting'
     | '/dashboard'
     | '/faq'
     | '/pricing'
+    | '/privacy'
     | '/products'
+    | '/strategy'
+    | '/terms'
+    | '/websites'
     | '/admin/login'
     | '/admin/new'
     | '/admin'
@@ -179,12 +256,19 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/admin'
+    | '/about'
     | '/agent'
+    | '/agents'
+    | '/book'
     | '/consulting'
     | '/dashboard'
     | '/faq'
     | '/pricing'
+    | '/privacy'
     | '/products'
+    | '/strategy'
+    | '/terms'
+    | '/websites'
     | '/admin/login'
     | '/admin/new'
     | '/admin/'
@@ -196,23 +280,58 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRouteRoute: typeof AdminRouteRouteWithChildren
+  AboutRoute: typeof AboutRoute
   AgentRoute: typeof AgentRoute
+  AgentsRoute: typeof AgentsRoute
+  BookRoute: typeof BookRoute
   ConsultingRoute: typeof ConsultingRoute
   DashboardRoute: typeof DashboardRoute
   FaqRoute: typeof FaqRoute
   PricingRoute: typeof PricingRoute
+  PrivacyRoute: typeof PrivacyRoute
   ProductsRoute: typeof ProductsRoute
+  StrategyRoute: typeof StrategyRoute
+  TermsRoute: typeof TermsRoute
+  WebsitesRoute: typeof WebsitesRoute
   ApiDemoWebCallRoute: typeof ApiDemoWebCallRoute
   ApiRetellWebhookRoute: typeof ApiRetellWebhookRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/websites': {
+      id: '/websites'
+      path: '/websites'
+      fullPath: '/websites'
+      preLoaderRoute: typeof WebsitesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/strategy': {
+      id: '/strategy'
+      path: '/strategy'
+      fullPath: '/strategy'
+      preLoaderRoute: typeof StrategyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/products': {
       id: '/products'
       path: '/products'
       fullPath: '/products'
       preLoaderRoute: typeof ProductsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pricing': {
@@ -243,11 +362,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ConsultingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/book': {
+      id: '/book'
+      path: '/book'
+      fullPath: '/book'
+      preLoaderRoute: typeof BookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/agents': {
+      id: '/agents'
+      path: '/agents'
+      fullPath: '/agents'
+      preLoaderRoute: typeof AgentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/agent': {
       id: '/agent'
       path: '/agent'
       fullPath: '/agent'
       preLoaderRoute: typeof AgentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin': {
@@ -330,12 +470,19 @@ const AdminRouteRouteWithChildren = AdminRouteRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRouteRoute: AdminRouteRouteWithChildren,
+  AboutRoute: AboutRoute,
   AgentRoute: AgentRoute,
+  AgentsRoute: AgentsRoute,
+  BookRoute: BookRoute,
   ConsultingRoute: ConsultingRoute,
   DashboardRoute: DashboardRoute,
   FaqRoute: FaqRoute,
   PricingRoute: PricingRoute,
+  PrivacyRoute: PrivacyRoute,
   ProductsRoute: ProductsRoute,
+  StrategyRoute: StrategyRoute,
+  TermsRoute: TermsRoute,
+  WebsitesRoute: WebsitesRoute,
   ApiDemoWebCallRoute: ApiDemoWebCallRoute,
   ApiRetellWebhookRoute: ApiRetellWebhookRoute,
 }

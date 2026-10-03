@@ -1,8 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { ChevronDown } from 'lucide-react'
 import { useState } from 'react'
-import { SiteFooter } from '@/components/SiteFooter'
-import { SiteHeader } from '@/components/SiteHeader'
+import { XyzFooter, XyzHeader } from '@/components/XyzChrome'
 
 export const Route = createFileRoute('/faq')({ component: Faq })
 
@@ -16,5 +15,5 @@ const questions = [
 
 function Faq() {
   const [open, setOpen] = useState(0)
-  return <div className="page-shell cream-page"><SiteHeader /><main><section className="subpage-hero faq-hero"><p className="eyebrow">Straight answers</p><h1>Before your agent<br /><i>says hello.</i></h1></section><section className="faq-list">{questions.map(([question, answer], index) => <article className={open === index ? 'open' : ''} key={question}><button onClick={() => setOpen(open === index ? -1 : index)}><span>0{index + 1}</span><strong>{question}</strong><ChevronDown /></button>{open === index && <p>{answer}</p>}</article>)}</section></main><SiteFooter /></div>
+  return <div className="page-shell cream-page"><XyzHeader /><main><section className="subpage-hero faq-hero"><p className="eyebrow">Straight answers</p><h1>Before your agent<br /><i>says hello.</i></h1></section><section className="faq-list">{questions.map(([question, answer], index) => <article className={open === index ? 'open' : ''} key={question}><button onClick={() => setOpen(open === index ? -1 : index)}><span>0{index + 1}</span><strong>{question}</strong><ChevronDown /></button>{open === index && <p>{answer}</p>}</article>)}</section></main><XyzFooter /></div>
 }

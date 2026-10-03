@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { ArrowRight, CheckCircle2, Compass, Network, Rocket, Wrench } from 'lucide-react'
-import { SiteFooter } from '@/components/SiteFooter'
-import { SiteHeader } from '@/components/SiteHeader'
+import { XyzFooter, XyzHeader } from '@/components/XyzChrome'
 
 export const Route = createFileRoute('/consulting')({ component: Consulting })
 
@@ -15,7 +14,7 @@ const services = [
 function Consulting() {
   return (
     <div className="page-shell cream-page">
-      <SiteHeader />
+      <XyzHeader />
       <main>
         <section className="consulting-hero">
           <div><p className="eyebrow">Strategy, build, launch</p><h1>We turn your phone chaos into a working system.</h1></div>
@@ -35,7 +34,7 @@ function Consulting() {
           <div className="engagement-price"><span>STARTUP FEES</span><strong>$500–$3,500</strong><small>Quoted after discovery. Monthly platform plan is separate.</small><Link to="/pricing" className="text-link light-link">Review platform plans <ArrowRight size={15} /></Link></div>
         </section>
       </main>
-      <SiteFooter />
+      <XyzFooter />
     </div>
   )
 }

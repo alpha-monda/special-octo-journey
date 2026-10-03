@@ -11,6 +11,7 @@ const PER_IP_DAILY_LIMIT = 6
 const DEFAULT_GLOBAL_DAILY_LIMIT = 150
 
 const FIELD_LIMITS = {
+  visitorName: 60,
   businessName: 80,
   businessType: 80,
   objectives: 600,
@@ -19,6 +20,7 @@ const FIELD_LIMITS = {
 } as const
 
 export type DemoCallInput = {
+  visitorName: string
   businessName: string
   businessType: string
   objectives: string
@@ -49,6 +51,7 @@ function clean(value: unknown, max: number) {
 
 export function parseDemoInput(body: Record<string, unknown>): DemoCallInput {
   const input = {
+    visitorName: clean(body.visitorName, FIELD_LIMITS.visitorName),
     businessName: clean(body.businessName, FIELD_LIMITS.businessName),
     businessType: clean(body.businessType, FIELD_LIMITS.businessType),
     objectives: clean(body.objectives, FIELD_LIMITS.objectives),
@@ -140,6 +143,7 @@ export async function createDemoWebCall(input: DemoCallInput, attemptId: number)
       objectives: input.objectives,
       fields_to_collect: input.fieldsToCollect,
       tone: input.tone || 'warm, friendly, and professional',
+      visitor_name: input.visitorName || 'the caller',
     },
     agent_override: {
       agent: {

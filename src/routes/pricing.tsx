@@ -1,8 +1,7 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { ArrowRight, Check, Minus } from 'lucide-react'
 import { useState } from 'react'
-import { SiteFooter } from '@/components/SiteFooter'
-import { SiteHeader } from '@/components/SiteHeader'
+import { XyzFooter, XyzHeader } from '@/components/XyzChrome'
 
 export const Route = createFileRoute('/pricing')({ component: Pricing })
 
@@ -17,7 +16,7 @@ function Pricing() {
   const [annual, setAnnual] = useState(false)
   return (
     <div className="page-shell cream-page">
-      <SiteHeader />
+      <XyzHeader />
       <main>
         <section className="subpage-hero">
           <p className="eyebrow">Plans built around call complexity</p>
@@ -50,7 +49,7 @@ function Pricing() {
           <div><p>Implementation and consulting fees cover discovery, prompt and call-flow design, integrations, testing, and launch.</p><strong>Typical startup investment: $500–$3,500</strong><small>Final scope depends on locations, integrations, routing, and review requirements.</small></div>
         </section>
       </main>
-      <SiteFooter />
+      <XyzFooter />
     </div>
   )
 }

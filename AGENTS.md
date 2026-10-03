@@ -28,13 +28,14 @@ AI AGENCY XYZ is a responsive SaaS marketing site and client dashboard for an AI
 
 ## Routes
 
-- `/` — primary marketing page
+- `/` — homepage (2026 redesign): three-object triptych, Why XYZ axis, About, CTA
+- `/agents` — AI Answering Agents page (redesign) including the live "Talk to it" demo (`src/components/DemoCall.tsx`); `/agent` redirects to `/agents#demo`
+- `/strategy`, `/websites`, `/about`, `/book`, `/privacy`, `/terms` — honest "coming soon" stubs (`src/components/StubPage.tsx`); `/book?plan=` prefills the plan
 - `/pricing` — four plan levels and startup-fee guidance
 - `/products` — Printify-ready product catalog presentation
 - `/consulting` — implementation and consulting services
 - `/faq` — interactive service FAQ
 - `/dashboard` — responsive call analytics demo workspace
-- `/agent` — "Talk to it" browser demo against the master Retell demo agent (see `docs/retell-demo-agent.md`)
 - `/api/demo/web-call` — server route that verifies Turnstile, rate-limits, and creates the Retell web call
 - `/api/retell/webhook` — Retell call events (signature-verified), routed by agent_id: demo calls email the owner; customer calls are stored in `call_records` and emailed to the customer
 - `/admin` — owner-only admin (password in `ADMIN_PASSWORD`): create customers, which provisions a Retell LLM + agent + phone number; edit settings with version history and restore; pause and resume; recent calls
@@ -43,8 +44,8 @@ AI AGENCY XYZ is a responsive SaaS marketing site and client dashboard for an AI
 
 - Use PascalCase for React components and camelCase for local values.
 - Keep route files focused on one page; extract elements shared across pages into `src/components/`.
-- Reuse CSS variables from `:root` rather than introducing unrelated colors.
-- Preserve the editorial orange, cream, and black visual language.
+- **New design system** (`src/xyz.css`): brand tokens `--x-*` (orange #EA622C, tangerine #F28C38 for orange text on gray, gray #4C5458, gray-light #F4F4F4, teal #003434, gold #F4B448, ice #D6EEF5, midnight #080C1C, white). Don't add other colors. Fraunces (display, SOFT 100, WONK 1, weight 900, highlighted words are synthesized-italic) + Work Sans. No text under 16px; 44px minimum touch targets. All design classes (`.pill`, `.puff`, `.quilt`, `.chip-btn`, …) are scoped under `.xyz`; shared header/footer in `src/components/XyzChrome.tsx`; brand images in `public/brand/`.
+- Older pages (pricing, products, consulting, faq, dashboard, admin) still use the legacy `styles.css` look until redesigned.
 - Use `.js` extensions for relative TypeScript imports used by server-side database code.
 - Define every persistent schema change in `db/schema.ts`, then generate a named Drizzle migration.
 - Never store Retell, Printify, telephony, or client credentials in source control.

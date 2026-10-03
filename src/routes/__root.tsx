@@ -1,5 +1,6 @@
 import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
 import '../styles.css'
+import '../xyz.css'
 
 export const Route = createRootRoute({
   head: () => ({
@@ -12,12 +13,20 @@ export const Route = createRootRoute({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: 'AI AGENCY XYZ | Your calls, answered.',
+        title: 'AI Agency XYZ | AI answering agents, strategy & websites',
       },
       {
         name: 'description',
         content:
-          'AI answering agents with human review, smart routing, and call intelligence for modern businesses.',
+          'AI answering agents that pick up every call, AI strategy and training for your team, and websites that answer, book, and sell.',
+      },
+    ],
+    links: [
+      { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+      { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' },
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..900,0..100,0..1&family=Work+Sans:wght@400;500;600;700;800;900&display=swap',
       },
     ],
   }),

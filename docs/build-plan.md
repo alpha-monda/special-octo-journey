@@ -39,6 +39,10 @@ but the order and a few decisions changed. Update this file when a decision chan
 - "Call it now" test link and forwarding instructions on the customer page
 - Post-call analysis extracts each "what to collect" field plus `unanswered_questions` and `is_urgent`; urgent calls are flagged in the email subject
 
+### Redesign (branch `design-refresh`, awaiting approval)
+- Steps 1–5 of the design handoff: tokens + shared components, homepage, `/agents` (demo wired to Retell), mobile pass, stub routes
+- Plan prices shown: Solo $29 · Assisted $99 · Growth $249 · Office $500+; minutes still `[__]` until set
+
 ### Next
 - **Self-improvement loop.** Retell post-call analysis already extracts `unanswered_questions` and
   `is_urgent` (plus Retell's caller sentiment) per call, already wired in the engine. Next: a weekly "report card" email listing
