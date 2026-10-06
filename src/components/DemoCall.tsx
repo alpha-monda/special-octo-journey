@@ -7,7 +7,7 @@ import { Turnstile, type TurnstileHandle } from '@/components/Turnstile'
 // Retell web call in the browser (Phase 1). The server fills in the other settings.
 
 // A sample of what a real agent is set up with (see src/lib/agent-settings.ts).
-const MORE_SETTINGS = ['Hours', 'Services', 'Prices', 'FAQs', 'Booking link', 'Service area', 'Voice', 'Tone', 'Greeting', 'What to collect', 'Urgent calls', 'Who gets the summary']
+const MORE_SETTINGS = ['Business hours', 'Services and prices', 'Your FAQs', 'Booking link', 'Service area', 'Voice', 'Tone', 'Greeting', 'What to ask callers', 'Urgent-call rules', 'Who gets the summary', 'Email and/or text']
 
 type CallState = 'idle' | 'starting' | 'live' | 'ended'
 
@@ -107,9 +107,9 @@ export function DemoCall() {
 
       <div className="demo-more">
         <p className="demo-more-title"><strong>That's 2 of 25+ settings.</strong> Your real agent is set up with all of them:</p>
-        <ul className="demo-more-tags">
+        <ul className="demo-more-list">
           {MORE_SETTINGS.map((s) => <li key={s}>{s}</li>)}
-          <li>+ more</li>
+          <li>…and more</li>
         </ul>
       </div>
 

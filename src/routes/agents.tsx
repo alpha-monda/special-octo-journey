@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
+import { CallSummaryPreview } from '@/components/CallSummaryPreview'
 import { DemoCall } from '@/components/DemoCall'
 import { CheckOrb, XyzFooter, XyzHeader } from '@/components/XyzChrome'
 
@@ -26,7 +27,7 @@ const HOW = [
 
 type Plan = { id: string; name: string; price: string; minutes: string; items: string[]; tone: 'white' | 'teal' | 'ice'; cta: string }
 const PLANS: Plan[] = [
-  { id: 'solo', name: 'Solo', price: '$29', minutes: '[__] minutes included', items: ['One agent', 'Answers + takes messages', 'Email summaries'], tone: 'white', cta: 'Start' },
+  { id: 'solo', name: 'Solo', price: '$29', minutes: '[__] minutes included', items: ['One agent', 'Answers + takes messages', 'Email and/or text summaries'], tone: 'white', cta: 'Start' },
   { id: 'assisted', name: 'Assisted', price: '$99', minutes: '[__] minutes included', items: ['Everything in Solo', 'Human review', 'Books appointments'], tone: 'white', cta: 'Start' },
   { id: 'growth', name: 'Growth', price: '$249', minutes: '[__] minutes included', items: ['Everything in Assisted', 'Smart routing', 'Calendar + CRM links'], tone: 'teal', cta: 'Start' },
   { id: 'office', name: 'Office', price: '$500+', minutes: 'Built for your setup', items: ['Everything in Growth', 'Multiple lines', 'Priority support'], tone: 'ice', cta: 'Contact' },
@@ -71,6 +72,8 @@ function AgentsPage() {
           </div>
           <DemoCall />
         </section>
+
+        <CallSummaryPreview />
 
         <section id="how" className="section how">
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16, textAlign: 'center' }}>

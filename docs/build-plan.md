@@ -41,6 +41,7 @@ but the order and a few decisions changed. Update this file when a decision chan
 
 ### Redesign (branch `design-refresh`, awaiting approval)
 - Steps 1–5 of the design handoff: tokens + shared components, homepage, `/agents` (demo wired to Retell), mobile pass, stub routes
+- "After every call" section on /agents shows an example summary email and text (Email / Text / Both toggle). Texts need A2P 10DLC before launch
 - Demo form asks only name + business name ("2 of 25+ settings"); the server fills in type, objectives and fields to collect
 - Plan prices shown: Solo $29 · Assisted $99 · Growth $249 · Office $500+; minutes still `[__]` until set
 

@@ -131,8 +131,26 @@ div.xyz > main { flex: 1 0 auto; }
 .xyz .demo-more { display: flex; flex-direction: column; gap: 16px; padding-top: 6px; }
 .xyz .demo-more-title { margin: 0; font-size: 20px; font-weight: 600; line-height: 1.4; color: var(--x-white); }
 .xyz .demo-more-title strong { color: var(--x-gold); font-weight: 800; }
-.xyz .demo-more-tags { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 10px; }
-.xyz .demo-more-tags li { padding: 8px 18px; border: 2px dashed rgba(214,238,245,.45); border-radius: 999px; font: 500 18px var(--x-bubble); color: var(--x-ice); }
+.xyz .demo-more-list { margin: 0; padding: 0 0 0 4px; list-style: none; columns: 2; column-gap: 32px; }
+.xyz .demo-more-list li { position: relative; break-inside: avoid; padding: 4px 0 4px 24px; font-size: 18px; font-weight: 600; color: var(--x-ice); }
+.xyz .demo-more-list li::before { content: ''; position: absolute; left: 0; top: 13px; width: 10px; height: 10px; border-radius: 50%; background: var(--x-orange); }
+
+/* After-call summary preview */
+.xyz .summary { background: var(--x-white); display: flex; gap: 64px; align-items: center; }
+.xyz .summary-copy { flex: 0 0 420px; display: flex; flex-direction: column; gap: 24px; color: var(--x-teal); }
+.xyz .summary-view { flex-grow: 1; display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start; justify-content: center; }
+.xyz .mock-email { flex: 1 1 380px; max-width: 520px; padding: 36px; background: var(--x-white); color: var(--x-gray); display: flex; flex-direction: column; gap: 14px; }
+.xyz .mock-email .meta { margin: 0; font-size: 16px; color: var(--x-gray); border-bottom: 2px solid var(--x-gray-light); padding-bottom: 12px; }
+.xyz .mock-email h3 { margin: 0; font: 900 28px/1.1 'Fraunces', Georgia, serif; font-variation-settings: 'SOFT' 100, 'WONK' 1; color: var(--x-teal); }
+.xyz .mock-email p { margin: 0; font-size: 17px; line-height: 1.5; }
+.xyz .mock-email dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 6px 18px; font-size: 17px; }
+.xyz .mock-email dt { font-weight: 700; color: var(--x-teal); }
+.xyz .mock-email dd { margin: 0; }
+.xyz .mock-email .more { font-weight: 700; color: var(--x-orange); }
+.xyz .mock-phone { flex: 0 0 300px; padding: 18px; border-radius: 44px; background: var(--x-midnight); box-shadow: 0 26px 40px -24px rgba(8,12,28,.6); }
+.xyz .mock-phone .screen { min-height: 300px; padding: 28px 18px; border-radius: 30px; background: var(--x-gray-light); display: flex; flex-direction: column; gap: 10px; }
+.xyz .mock-phone .from { margin: 0; text-align: center; font-size: 16px; font-weight: 700; color: var(--x-gray); }
+.xyz .mock-phone .bubble { margin: 0; padding: 14px 16px; border-radius: 22px 22px 22px 6px; background: var(--x-ice); color: var(--x-midnight); font-size: 17px; line-height: 1.45; }
 .xyz .chips { display: flex; flex-wrap: wrap; gap: 12px; }
 .xyz .chip-btn { min-height: 60px; padding: 0 28px; border: 0; border-radius: 999px; cursor: pointer; font: 600 21px var(--x-bubble); color: var(--x-teal); background: radial-gradient(130% 120% at 50% 15%, #fff 0%, #f0fcfc 55%, #c8d8e8 100%); box-shadow: inset 0 -6px 9px rgba(0,52,52,.2), inset 0 5px 8px rgba(255,255,255,.95), 0 10px 16px -8px rgba(0,0,0,.4); transition: transform .12s ease; }
 .xyz .chip-btn:hover { transform: translateY(-2px); }
@@ -171,12 +189,17 @@ div.xyz > main { flex: 1 0 auto; }
   .xyz .hero-art { width: min(520px, 100%); align-self: center; }
   .xyz .demo-copy, .xyz .why-copy, .xyz .split-copy { flex-basis: auto; max-width: none !important; }
   .xyz .demo-copy { position: static; }
+  .xyz .summary { flex-direction: column; align-items: stretch; }
+  .xyz .summary-copy { flex-basis: auto; }
   .xyz .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .xyz .cta-panel { padding: 48px; flex-direction: column; align-items: flex-start; }
 }
 
 /* Mobile: everything stacks, 16px gutters. */
 @media (max-width: 768px) {
+  .xyz .demo-more-list { columns: 1; }
+  .xyz .mock-email { padding: 26px; }
+  .xyz .mock-phone { flex-basis: auto; width: min(300px, 100%); }
   :root { --x-gutter: 16px; }
   .xyz-header { height: 72px; }
   .xyz-header .logo img { width: 180px; height: 27px; }
