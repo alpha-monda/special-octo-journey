@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { CallSummaryPreview } from '@/components/CallSummaryPreview'
 import { DemoCall } from '@/components/DemoCall'
-import { CheckOrb, XyzFooter, XyzHeader } from '@/components/XyzChrome'
+import { XyzFooter, XyzHeader } from '@/components/XyzChrome'
 
 export const Route = createFileRoute('/agents')({
   head: () => ({
@@ -13,10 +13,12 @@ export const Route = createFileRoute('/agents')({
   component: AgentsPage,
 })
 
-const BENEFITS = [
-  { title: 'Never miss a call.', sub: 'Answers 24/7, on the first ring.' },
-  { title: 'Never miss a lead.', sub: 'Collects the details. Books the job.' },
-  { title: 'Get your time back.', sub: 'You only hear what matters.' },
+// Quick facts under the hero headline: what it is, at a glance.
+const FACTS = [
+  { k: 'Answers', v: '24/7, first ring' },
+  { k: 'Collects', v: 'Name, number, reason' },
+  { k: 'Sends you', v: 'Email and/or text' },
+  { k: 'Plans from', v: '$29/mo' },
 ]
 
 const HOW = [
@@ -45,21 +47,22 @@ function AgentsPage() {
       <XyzHeader cta={{ label: 'Get my agent', to: '/agents', hash: 'plans' }} />
       <main>
         <section id="top" className="hero">
+          <div className="hero-copy">
+            <p className="eyebrow">AI answering agent</p>
+            <h1 className="disp h-hero">Every call answered. <em style={{ color: 'var(--x-orange)' }}>Without you.</em></h1>
+            <p className="hero-sub">An AI receptionist picks up your business calls, takes the details or books the job, and sends you a summary after every call. Keep your number. Just forward it.</p>
+            <dl className="facts">
+              {FACTS.map((f) => (
+                <div key={f.k}><dt>{f.k}</dt><dd>{f.v}</dd></div>
+              ))}
+            </dl>
+            <div className="btn-row">
+              <Link to="/agents" hash="plans" className="pill sm">See plans</Link>
+              <Link to="/agents" hash="demo" className="btn-line">Talk to a demo</Link>
+            </div>
+          </div>
           <div className="hero-art">
             <img src="/brand/obj-agents-headphones.webp" alt="AI Answering Agents by XYZ" width={540} height={540} fetchPriority="high" />
-          </div>
-          <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', gap: 30 }}>
-            <h1 className="disp h-xl">Every call answered. <em style={{ color: 'var(--x-orange)' }}>Without you.</em></h1>
-            {BENEFITS.map((b) => (
-              <div key={b.title} className="benefit">
-                <CheckOrb />
-                <div><h2>{b.title}</h2><p>{b.sub}</p></div>
-              </div>
-            ))}
-            <div className="btn-row" style={{ marginTop: 6 }}>
-              <Link to="/agents" hash="plans" className="pill">Set up my agent</Link>
-              <Link to="/agents" hash="demo" className="puff">Talk to a demo</Link>
-            </div>
           </div>
         </section>
 
