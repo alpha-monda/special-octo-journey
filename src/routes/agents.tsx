@@ -79,7 +79,7 @@ function AgentsPage() {
           </div>
           <div className="grid-3">
             {HOW.map((c) => (
-              <div key={c.n} className="quilt dk card-pad">
+              <div key={c.n} className="quilt dk card-pad no-stitch">
                 <p className="eyebrow" style={{ color: 'var(--x-gold)' }}>{c.n}</p>
                 <h3 className="card-h">{c.h}</h3>
                 <p className="card-p">{c.p}</p>

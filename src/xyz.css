@@ -59,6 +59,7 @@ div.xyz > main { flex: 1 0 auto; }
 .xyz .quilt.dk::before { background: linear-gradient(90deg, rgba(255,255,255,.28), rgba(255,255,255,0)); }
 .xyz .quilt.dk::after { border-color: rgba(255,255,255,.35); }
 .xyz .quilt > * { position: relative; z-index: 1; }
+.xyz .quilt.no-stitch::after { content: none; }
 
 .xyz .orb { position: absolute; border-radius: 50%; box-shadow: inset -10px -14px 22px rgba(0,0,0,.22), inset 8px 10px 16px rgba(255,255,255,.55), 0 24px 34px -14px rgba(76,84,88,.35); }
 .xyz .orb-check, .xyz .step-n { flex-shrink: 0; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at 34% 30%, #fce4a8 0%, #f4b448 55%, #c88c28 100%); box-shadow: inset -6px -8px 12px rgba(0,0,0,.18), inset 5px 6px 10px rgba(255,255,255,.55), 0 14px 20px -10px rgba(76,84,88,.4); }
