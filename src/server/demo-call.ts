@@ -19,6 +19,12 @@ const FIELD_LIMITS = {
   tone: 80,
 } as const
 
+const DEMO_DEFAULTS = {
+  businessType: 'local business (work out what kind from its name, e.g. "Rivera Plumbing" is a plumber)',
+  objectives: 'Answer questions, book appointments, and take messages',
+  fieldsToCollect: 'Name, Phone, Reason for call',
+}
+
 export type DemoCallInput = {
   visitorName: string
   businessName: string
@@ -58,10 +64,16 @@ export function parseDemoInput(body: Record<string, unknown>): DemoCallInput {
     fieldsToCollect: clean(body.fieldsToCollect, FIELD_LIMITS.fieldsToCollect),
     tone: clean(body.tone, FIELD_LIMITS.tone),
   }
-  if (!input.businessName || !input.businessType || !input.objectives || !input.fieldsToCollect) {
-    throw new DemoCallError('Please fill in your business name, type, what it should do, and what to collect.', 400)
+  if (!input.businessName) {
+    throw new DemoCallError('Please add your business name.', 400)
   }
-  return input
+  // The demo form only asks for two things; everything else gets sensible defaults.
+  return {
+    ...input,
+    businessType: input.businessType || DEMO_DEFAULTS.businessType,
+    objectives: input.objectives || DEMO_DEFAULTS.objectives,
+    fieldsToCollect: input.fieldsToCollect || DEMO_DEFAULTS.fieldsToCollect,
+  }
 }
 
 export function clientIp(request: Request) {

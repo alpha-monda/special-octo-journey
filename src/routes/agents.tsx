@@ -66,7 +66,7 @@ function AgentsPage() {
           <div className="demo-copy">
             <p className="eyebrow">Try it now</p>
             <h2 className="disp h-xl">Talk to <em style={{ color: 'var(--x-orange)' }}>your</em> agent.</h2>
-            <p className="lead">Tap a few things. Then call it.</p>
+            <p className="lead">Two quick boxes. Then call it.</p>
             <p style={{ margin: 0, fontSize: 20, fontWeight: 600, color: '#1C6060' }}>Uses your mic. 3-minute demo.</p>
           </div>
           <DemoCall />

@@ -3,29 +3,13 @@ import { useEffect, useRef, useState } from 'react'
 import type { RetellWebClient } from 'retell-client-js-sdk'
 import { Turnstile, type TurnstileHandle } from '@/components/Turnstile'
 
-// The "Talk to it" demo form on /agents: chips → POST /api/demo/web-call →
-// Retell web call in the browser (Phase 1).
+// The "Talk to it" demo form on /agents: name + business → POST /api/demo/web-call →
+// Retell web call in the browser (Phase 1). The server fills in the other settings.
 
-const TYPES = ['Plumbing', 'HVAC', 'Salon', 'Dental', 'Law', 'Other']
-const DOES = ['Answer questions', 'Book appointments', 'Take messages', 'Qualify leads']
-const COLLECTS = ['Name', 'Phone', 'Email', 'Address', 'Reason for call']
+// A sample of what a real agent is set up with (see src/lib/agent-settings.ts).
+const MORE_SETTINGS = ['Hours', 'Services', 'Prices', 'FAQs', 'Booking link', 'Service area', 'Voice', 'Tone', 'Greeting', 'What to collect', 'Urgent calls', 'Who gets the summary']
 
 type CallState = 'idle' | 'starting' | 'live' | 'ended'
-
-function ChipGroup({ legend, options, selected, onToggle, disabled }: { legend: string; options: string[]; selected: string[]; onToggle: (o: string) => void; disabled: boolean }) {
-  return (
-    <fieldset>
-      <legend className="flabel">{legend}</legend>
-      <div className="chips">
-        {options.map((o) => (
-          <button key={o} type="button" className="chip-btn" aria-pressed={selected.includes(o)} disabled={disabled} onClick={() => onToggle(o)}>
-            {o}
-          </button>
-        ))}
-      </div>
-    </fieldset>
-  )
-}
 
 function formatClock(ms: number) {
   const total = Math.max(0, Math.ceil(ms / 1000))
@@ -35,9 +19,6 @@ function formatClock(ms: number) {
 export function DemoCall() {
   const [name, setName] = useState('')
   const [business, setBusiness] = useState('')
-  const [type, setType] = useState('Plumbing')
-  const [does, setDoes] = useState(['Answer questions', 'Book appointments'])
-  const [collects, setCollects] = useState(['Name', 'Phone', 'Reason for call'])
   const [callState, setCallState] = useState<CallState>('idle')
   const [agentTalking, setAgentTalking] = useState(false)
   const [error, setError] = useState('')
@@ -54,15 +35,12 @@ export function DemoCall() {
   }, [callState])
   useEffect(() => () => client.current?.stopCall(), [])
 
-  const toggle = (list: string[], set: (v: string[]) => void) => (o: string) => set(list.includes(o) ? list.filter((x) => x !== o) : [...list, o])
   const inCall = callState === 'starting' || callState === 'live'
 
   async function start(e: React.FormEvent) {
     e.preventDefault()
     setError('')
     if (!business.trim()) return setError('Add your business name first.')
-    if (!does.length) return setError('Pick at least one thing it should do.')
-    if (!collects.length) return setError('Pick at least one thing to ask callers for.')
     if (!token) return setError('Please complete the quick human check below.')
     setCallState('starting')
     try {
@@ -72,14 +50,7 @@ export function DemoCall() {
       const res = await fetch('/api/demo/web-call', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          visitorName: name,
-          businessName: business,
-          businessType: type === 'Other' ? 'local business' : type,
-          objectives: does.join(', '),
-          fieldsToCollect: collects.join(', '),
-          turnstileToken: token,
-        }),
+        body: JSON.stringify({ visitorName: name, businessName: business, turnstileToken: token }),
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data.error ?? 'We could not start the demo call.')
@@ -133,9 +104,14 @@ export function DemoCall() {
           <input id="d-biz" name="organization" type="text" autoComplete="organization" enterKeyHint="done" placeholder="Rivera Plumbing" maxLength={80} required value={business} onChange={(e) => setBusiness(e.target.value)} disabled={inCall} />
         </div>
       </div>
-      <ChipGroup legend="What kind of business?" options={TYPES} selected={[type]} onToggle={setType} disabled={inCall} />
-      <ChipGroup legend="It should…" options={DOES} selected={does} onToggle={toggle(does, setDoes)} disabled={inCall} />
-      <ChipGroup legend="Ask callers for…" options={COLLECTS} selected={collects} onToggle={toggle(collects, setCollects)} disabled={inCall} />
+
+      <div className="demo-more">
+        <p className="demo-more-title"><strong>That's 2 of 25+ settings.</strong> Your real agent is set up with all of them:</p>
+        <ul className="demo-more-tags">
+          {MORE_SETTINGS.map((s) => <li key={s}>{s}</li>)}
+          <li>+ more</li>
+        </ul>
+      </div>
 
       {error && <p className="demo-error" role="alert">{error}</p>}
 
