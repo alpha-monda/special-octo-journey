@@ -89,6 +89,10 @@ To get Turnstile keys, go to the Cloudflare dashboard: **Turnstile → Add widge
 hostnames `aiagencyxyz.com` and `localhost`. It's free and doesn't require moving DNS
 to Cloudflare.
 
+**Preview links:** to test the demo on a Netlify branch preview, add that preview's
+hostname (e.g. `design-refresh--aiagencyxyz.netlify.app`) to the Turnstile widget's
+hostnames, and add the branch under Netlify → Developer settings → Branches and deploy contexts.
+
 `VITE_TURNSTILE_SITE_KEY` is read at build time, so trigger a new deploy after
 setting it.
 
