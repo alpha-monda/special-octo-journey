@@ -117,8 +117,8 @@ div.xyz > main { flex: 1 0 auto; }
 .xyz .benefit h2 { margin: 0; font-size: clamp(24px, 2.3vw, 32px); line-height: 1.1; font-weight: 800; }
 .xyz .benefit p { margin: 4px 0 0; font-size: 20px; font-weight: 500; }
 .xyz .btn-row { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
-.xyz .demo { background: var(--x-ice); display: flex; gap: 64px; align-items: center; }
-.xyz .demo-copy { flex: 0 0 460px; display: flex; flex-direction: column; gap: 24px; color: var(--x-teal); }
+.xyz .demo { background: var(--x-ice); display: flex; gap: 64px; align-items: flex-start; }
+.xyz .demo-copy { flex: 0 0 460px; position: sticky; top: 48px; display: flex; flex-direction: column; gap: 24px; color: var(--x-teal); }
 .xyz .demo-form { flex-grow: 1; padding: 56px; display: flex; flex-direction: column; gap: 30px; }
 .xyz .demo-form fieldset { margin: 0; padding: 0; border: 0; display: flex; flex-direction: column; gap: 14px; }
 .xyz .flabel, .xyz .bigfield label { padding: 0; font-size: 18px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--x-gold); }
@@ -164,6 +164,7 @@ div.xyz > main { flex: 1 0 auto; }
   .xyz .axis { align-self: center; zoom: .8; }
   .xyz .hero-art { width: min(520px, 100%); align-self: center; }
   .xyz .demo-copy, .xyz .why-copy, .xyz .split-copy { flex-basis: auto; max-width: none !important; }
+  .xyz .demo-copy { position: static; }
   .xyz .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .xyz .cta-panel { padding: 48px; flex-direction: column; align-items: flex-start; }
 }
