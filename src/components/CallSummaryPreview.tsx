@@ -15,7 +15,7 @@ export function CallSummaryPreview() {
     <section id="summary" className="section summary">
       <div className="summary-copy">
         <p className="eyebrow">After every call</p>
-        <h2 className="disp h-lg">You get the <em style={{ color: 'var(--x-orange)' }}>gist.</em></h2>
+        <h2 className="disp h-lg">You get the <em style={{ color: 'var(--x-accent)' }}>gist.</em></h2>
         <p className="lead">Who called, what they need, and how to reach them. By email, text, or both. Your pick.</p>
         <div className="chips" role="group" aria-label="Show an example summary by">
           {OPTIONS.map((o) => (

@@ -30,7 +30,7 @@ function Home() {
 
         <section id="why" className="section why">
           <div className="why-copy">
-            <p className="eyebrow" style={{ color: 'var(--x-gold)' }}>Why XYZ</p>
+            <p className="eyebrow" style={{ color: 'var(--x-tangerine)' }}>Why XYZ</p>
             <h2 className="disp h-xl" style={{ color: 'var(--x-white)' }}>
               Solve for <em style={{ color: 'var(--x-tangerine)' }}>x, y &amp; z.</em>
             </h2>
@@ -44,13 +44,13 @@ function Home() {
           <div className="split-copy">
             <p className="eyebrow" style={{ color: 'var(--x-orange)' }}>About us</p>
             <h2 className="disp h-lg">
-              Human-centered. <em style={{ color: 'var(--x-orange)' }}>AI-supported.</em>
+              Human-centered. <em style={{ color: 'var(--x-accent)' }}>AI-supported.</em>
             </h2>
             <p className="copy">We design around your people. AI does the heavy lifting.</p>
             <p className="copy">We fill the slot. We don't replace your team.</p>
             <p className="copy">Map the work. Cut the waste. Automate the rest.</p>
           </div>
-          <div className="quilt" style={{ flexGrow: 1, padding: 48, background: 'var(--x-gold)', color: 'var(--x-midnight)', display: 'flex', flexDirection: 'column', gap: 24 }}>
+          <div className="quilt" style={{ flexGrow: 1, padding: 48, background: 'var(--x-gold)', color: 'var(--x-ink)', display: 'flex', flexDirection: 'column', gap: 24 }}>
             <p className="eyebrow">Where we've done the work</p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14 }}>
               {EXPERIENCE.map((e) => <span key={e} className="chip">{e}</span>)}
@@ -60,7 +60,7 @@ function Home() {
 
         <section id="book" className="section" style={{ paddingTop: 0 }}>
           <div className="quilt dk cta-panel">
-            <h2 className="disp">Ready to solve for <em style={{ color: 'var(--x-gold)' }}>XYZ?</em></h2>
+            <h2 className="disp">Ready to solve for <em style={{ color: 'var(--x-accent)' }}>XYZ?</em></h2>
             <Link to="/book" className="pill">Book a call</Link>
           </div>
         </section>
@@ -94,9 +94,9 @@ function AxisGraphic() {
       </svg>
       <div aria-hidden="true">
         <div className="orb" style={{ left: 286, top: 326, width: 28, height: 28, background: 'radial-gradient(circle at 34% 30%, #E4E8EA 0%, #7C868A 45%, #343A3E 100%)' }} />
-        <div style={{ position: 'absolute', left: 182, top: 320, fontSize: 16, fontWeight: 800, letterSpacing: '.14em', textTransform: 'uppercase', color: '#E8E9EA' }}>Today</div>
+        <div style={{ position: 'absolute', left: 182, top: 320, fontSize: 16, fontWeight: 800, letterSpacing: '.14em', textTransform: 'uppercase', color: 'var(--x-white)' }}>Today</div>
         <div className="orb" style={{ left: 382, top: 254, width: 68, height: 68, background: 'radial-gradient(circle at 34% 30%, #FCD8C4 0%, #F4845C 30%, #EA622C 62%, #B8481C 100%)' }} />
-        <div style={{ position: 'absolute', left: 460, top: 236, padding: '10px 20px', borderRadius: 999, background: '#FFFFFF', color: '#4C5458', fontSize: 17, fontWeight: 800, letterSpacing: '.12em', textTransform: 'uppercase', boxShadow: 'inset 0 -5px 8px rgba(76,84,88,.18), inset 0 4px 6px rgba(255,255,255,.95), 0 14px 22px -10px rgba(0,0,0,.4)' }}>Next level</div>
+        <div style={{ position: 'absolute', left: 460, top: 236, padding: '10px 20px', borderRadius: 999, background: '#FFFFFF', color: 'var(--x-ink)', fontSize: 17, fontWeight: 800, letterSpacing: '.12em', textTransform: 'uppercase', boxShadow: 'inset 0 -5px 8px rgba(76,84,88,.18), inset 0 4px 6px rgba(255,255,255,.95), 0 14px 22px -10px rgba(0,0,0,.4)' }}>Next level</div>
         <AxisChip letter="X" title="Time" sub="Hours back from busywork." style={{ right: 0, top: 548 }} />
         <AxisChip letter="Y" title="Know-how" sub="A team fluent in AI." style={{ left: 328, top: 34 }} />
         <AxisChip letter="Z" title="Growth" sub="More leads. More sales." style={{ left: 0, top: 482 }} />

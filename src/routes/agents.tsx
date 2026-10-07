@@ -49,7 +49,7 @@ function AgentsPage() {
         <section id="top" className="hero">
           <div className="hero-copy">
             <p className="eyebrow">AI answering agent</p>
-            <h1 className="disp h-hero">Every call answered. <em style={{ color: 'var(--x-orange)' }}>Without you.</em></h1>
+            <h1 className="disp h-hero">Every call answered. <em style={{ color: 'var(--x-accent)' }}>Without you.</em></h1>
             <p className="hero-sub">An AI receptionist picks up your business calls, takes the details or books the job, and sends you a summary after every call. Keep your number. Just forward it.</p>
             <dl className="facts">
               {FACTS.map((f) => (
@@ -69,9 +69,9 @@ function AgentsPage() {
         <section id="demo" className="section demo">
           <div className="demo-copy">
             <p className="eyebrow">Try it now</p>
-            <h2 className="disp h-xl">Talk to <em style={{ color: 'var(--x-orange)' }}>your</em> agent.</h2>
+            <h2 className="disp h-xl">Talk to <em style={{ color: 'var(--x-accent)' }}>your</em> agent.</h2>
             <p className="lead">Two quick boxes. Then call it.</p>
-            <p style={{ margin: 0, fontSize: 20, fontWeight: 600, color: '#1C6060' }}>Uses your mic. 3-minute demo.</p>
+            <p style={{ margin: 0, fontSize: 20, fontWeight: 600, color: 'var(--x-ink)' }}>Uses your mic. 3-minute demo.</p>
           </div>
           <DemoCall />
         </section>
@@ -86,7 +86,7 @@ function AgentsPage() {
           <div className="grid-3">
             {HOW.map((c) => (
               <div key={c.n} className="quilt dk card-pad no-stitch">
-                <p className="eyebrow" style={{ color: 'var(--x-gold)' }}>{c.n}</p>
+                <p className="eyebrow" style={{ color: 'var(--x-accent)' }}>{c.n}</p>
                 <h3 className="card-h">{c.h}</h3>
                 <p className="card-p">{c.p}</p>
               </div>
@@ -97,7 +97,7 @@ function AgentsPage() {
 
         <section id="time" className="section split" style={{ background: 'var(--x-gray-light)' }}>
           <div className="split-copy" style={{ maxWidth: 520, gap: 28 }}>
-            <h2 className="disp h-lg">Stop answering. <em style={{ color: 'var(--x-orange)' }}>Start building.</em></h2>
+            <h2 className="disp h-lg">Stop answering. <em style={{ color: 'var(--x-accent)' }}>Start building.</em></h2>
             <p className="copy">Get back to the work that makes money.</p>
             <Link to="/agents" hash="plans" className="pill">Get my time back</Link>
           </div>
@@ -107,7 +107,7 @@ function AgentsPage() {
               {['Answering every ring', 'Same questions, all day', 'Booking + rescheduling', 'Chasing voicemails'].map((t) => <div key={t} className="big-li">{t}</div>)}
             </div>
             <div className="quilt dk card-pad" style={{ gap: 22 }}>
-              <p className="eyebrow" style={{ color: 'var(--x-gold)' }}>Back on your plate</p>
+              <p className="eyebrow" style={{ color: 'var(--x-accent)' }}>Back on your plate</p>
               {['Closing deals', 'Doing the real work', 'Growing the business', 'Logging off on time'].map((t) => <div key={t} className="big-li">{t}</div>)}
             </div>
           </div>
@@ -115,7 +115,7 @@ function AgentsPage() {
 
         <section id="plans" className="section" style={{ background: 'var(--x-gray-light)', display: 'flex', flexDirection: 'column', gap: 48, paddingTop: 0 }}>
           <div className="plans-head">
-            <h2 className="disp h-lg">Pick your <em style={{ color: 'var(--x-orange)' }}>plan.</em></h2>
+            <h2 className="disp h-lg">Pick your <em style={{ color: 'var(--x-accent)' }}>plan.</em></h2>
             <p style={{ margin: 0, fontSize: 22, fontWeight: 600 }}>Cancel anytime.</p>
           </div>
           <div className="grid-4">
@@ -140,7 +140,7 @@ function AgentsPage() {
         </section>
 
         <section id="setup" className="section" style={{ display: 'flex', flexDirection: 'column', gap: 48 }}>
-          <h2 className="disp h-lg">Live in <em style={{ color: 'var(--x-orange)' }}>three steps.</em></h2>
+          <h2 className="disp h-lg">Live in <em style={{ color: 'var(--x-accent)' }}>three steps.</em></h2>
           <div className="steps">
             {STEPS.map((s, i) => (
               <div key={s.h}>
@@ -155,7 +155,7 @@ function AgentsPage() {
 
         <section id="start" className="section" style={{ paddingTop: 0 }}>
           <div className="quilt dk cta-panel">
-            <h2 className="disp">Your next caller is <em style={{ color: 'var(--x-gold)' }}>dialing now.</em></h2>
+            <h2 className="disp">Your next caller is <em style={{ color: 'var(--x-accent)' }}>dialing now.</em></h2>
             <Link to="/agents" hash="plans" className="pill">Set up my agent</Link>
           </div>
         </section>

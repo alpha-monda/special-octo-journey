@@ -14,7 +14,7 @@ export function XyzHeader({ cta = { label: 'Book a call', to: '/book' } }: { cta
   return (
     <header className="xyz xyz-header">
       <Link to="/" className="logo" aria-label="AI Agency XYZ home">
-        <img src="/brand/logo-flat.webp" alt="AI Agency XYZ" width={240} height={36} />
+        <img src="/brand/logo-wordmark.webp" alt="AI Agency XYZ" width={260} height={40} />
       </Link>
       <nav aria-label="Main">
         {NAV.map((n) => (
@@ -44,7 +44,7 @@ export function XyzHeader({ cta = { label: 'Book a call', to: '/book' } }: { cta
 export function XyzFooter() {
   return (
     <footer className="xyz xyz-footer">
-      <img src="/brand/logo-flat.webp" alt="AI Agency XYZ" width={240} height={36} loading="lazy" />
+      <img src="/brand/logo-wordmark.webp" alt="AI Agency XYZ" width={220} height={34} loading="lazy" />
       <nav aria-label="Footer">
         {NAV.map((n) => (
           <Link key={n.to} to={n.to} className="navlink">{n.label}</Link>
