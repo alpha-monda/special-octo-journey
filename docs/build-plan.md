@@ -45,6 +45,9 @@ but the order and a few decisions changed. Update this file when a decision chan
 - Demo form asks only name + business name ("2 of 25+ settings"); the server fills in type, objectives and fields to collect
 - Plan prices shown: Solo $29 · Assisted $99 · Growth $249 · Office $500+; minutes still `[__]` until set
 
+### Pages to build out (from the Shopify main menu)
+- AI-Enabled Websites, AI Data Dashboards, AI-Optimized Marketing, AI Strategy & Training, Human-First AI Philosophy, AI Fans Store, Contact: all "coming soon" stubs today; need owner copy
+
 ### Next
 - **Self-improvement loop.** Retell post-call analysis already extracts `unanswered_questions` and
   `is_urgent` (plus Retell's caller sentiment) per call, already wired in the engine. Next: a weekly "report card" email listing

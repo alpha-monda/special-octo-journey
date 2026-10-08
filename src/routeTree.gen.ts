@@ -12,11 +12,16 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as WebsitesRouteImport } from './routes/websites'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as StrategyRouteImport } from './routes/strategy'
+import { Route as StoreRouteImport } from './routes/store'
 import { Route as ProductsRouteImport } from './routes/products'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as PhilosophyRouteImport } from './routes/philosophy'
+import { Route as MarketingRouteImport } from './routes/marketing'
 import { Route as FaqRouteImport } from './routes/faq'
+import { Route as DashboardsRouteImport } from './routes/dashboards'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ConsultingRouteImport } from './routes/consulting'
 import { Route as BookRouteImport } from './routes/book'
 import { Route as AgentsRouteImport } from './routes/agents'
@@ -46,6 +51,11 @@ const StrategyRoute = StrategyRouteImport.update({
   path: '/strategy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StoreRoute = StoreRouteImport.update({
+  id: '/store',
+  path: '/store',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProductsRoute = ProductsRouteImport.update({
   id: '/products',
   path: '/products',
@@ -61,14 +71,34 @@ const PricingRoute = PricingRouteImport.update({
   path: '/pricing',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PhilosophyRoute = PhilosophyRouteImport.update({
+  id: '/philosophy',
+  path: '/philosophy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MarketingRoute = MarketingRouteImport.update({
+  id: '/marketing',
+  path: '/marketing',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FaqRoute = FaqRouteImport.update({
   id: '/faq',
   path: '/faq',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardsRoute = DashboardsRouteImport.update({
+  id: '/dashboards',
+  path: '/dashboards',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ConsultingRoute = ConsultingRouteImport.update({
@@ -145,11 +175,16 @@ export interface FileRoutesByFullPath {
   '/agents': typeof AgentsRoute
   '/book': typeof BookRoute
   '/consulting': typeof ConsultingRoute
+  '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
+  '/dashboards': typeof DashboardsRoute
   '/faq': typeof FaqRoute
+  '/marketing': typeof MarketingRoute
+  '/philosophy': typeof PhilosophyRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/products': typeof ProductsRoute
+  '/store': typeof StoreRoute
   '/strategy': typeof StrategyRoute
   '/terms': typeof TermsRoute
   '/websites': typeof WebsitesRoute
@@ -167,11 +202,16 @@ export interface FileRoutesByTo {
   '/agents': typeof AgentsRoute
   '/book': typeof BookRoute
   '/consulting': typeof ConsultingRoute
+  '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
+  '/dashboards': typeof DashboardsRoute
   '/faq': typeof FaqRoute
+  '/marketing': typeof MarketingRoute
+  '/philosophy': typeof PhilosophyRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/products': typeof ProductsRoute
+  '/store': typeof StoreRoute
   '/strategy': typeof StrategyRoute
   '/terms': typeof TermsRoute
   '/websites': typeof WebsitesRoute
@@ -191,11 +231,16 @@ export interface FileRoutesById {
   '/agents': typeof AgentsRoute
   '/book': typeof BookRoute
   '/consulting': typeof ConsultingRoute
+  '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
+  '/dashboards': typeof DashboardsRoute
   '/faq': typeof FaqRoute
+  '/marketing': typeof MarketingRoute
+  '/philosophy': typeof PhilosophyRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/products': typeof ProductsRoute
+  '/store': typeof StoreRoute
   '/strategy': typeof StrategyRoute
   '/terms': typeof TermsRoute
   '/websites': typeof WebsitesRoute
@@ -216,11 +261,16 @@ export interface FileRouteTypes {
     | '/agents'
     | '/book'
     | '/consulting'
+    | '/contact'
     | '/dashboard'
+    | '/dashboards'
     | '/faq'
+    | '/marketing'
+    | '/philosophy'
     | '/pricing'
     | '/privacy'
     | '/products'
+    | '/store'
     | '/strategy'
     | '/terms'
     | '/websites'
@@ -238,11 +288,16 @@ export interface FileRouteTypes {
     | '/agents'
     | '/book'
     | '/consulting'
+    | '/contact'
     | '/dashboard'
+    | '/dashboards'
     | '/faq'
+    | '/marketing'
+    | '/philosophy'
     | '/pricing'
     | '/privacy'
     | '/products'
+    | '/store'
     | '/strategy'
     | '/terms'
     | '/websites'
@@ -261,11 +316,16 @@ export interface FileRouteTypes {
     | '/agents'
     | '/book'
     | '/consulting'
+    | '/contact'
     | '/dashboard'
+    | '/dashboards'
     | '/faq'
+    | '/marketing'
+    | '/philosophy'
     | '/pricing'
     | '/privacy'
     | '/products'
+    | '/store'
     | '/strategy'
     | '/terms'
     | '/websites'
@@ -285,11 +345,16 @@ export interface RootRouteChildren {
   AgentsRoute: typeof AgentsRoute
   BookRoute: typeof BookRoute
   ConsultingRoute: typeof ConsultingRoute
+  ContactRoute: typeof ContactRoute
   DashboardRoute: typeof DashboardRoute
+  DashboardsRoute: typeof DashboardsRoute
   FaqRoute: typeof FaqRoute
+  MarketingRoute: typeof MarketingRoute
+  PhilosophyRoute: typeof PhilosophyRoute
   PricingRoute: typeof PricingRoute
   PrivacyRoute: typeof PrivacyRoute
   ProductsRoute: typeof ProductsRoute
+  StoreRoute: typeof StoreRoute
   StrategyRoute: typeof StrategyRoute
   TermsRoute: typeof TermsRoute
   WebsitesRoute: typeof WebsitesRoute
@@ -320,6 +385,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StrategyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/store': {
+      id: '/store'
+      path: '/store'
+      fullPath: '/store'
+      preLoaderRoute: typeof StoreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/products': {
       id: '/products'
       path: '/products'
@@ -341,6 +413,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PricingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/philosophy': {
+      id: '/philosophy'
+      path: '/philosophy'
+      fullPath: '/philosophy'
+      preLoaderRoute: typeof PhilosophyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/marketing': {
+      id: '/marketing'
+      path: '/marketing'
+      fullPath: '/marketing'
+      preLoaderRoute: typeof MarketingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/faq': {
       id: '/faq'
       path: '/faq'
@@ -348,11 +434,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FaqRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboards': {
+      id: '/dashboards'
+      path: '/dashboards'
+      fullPath: '/dashboards'
+      preLoaderRoute: typeof DashboardsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dashboard': {
       id: '/dashboard'
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/consulting': {
@@ -475,11 +575,16 @@ const rootRouteChildren: RootRouteChildren = {
   AgentsRoute: AgentsRoute,
   BookRoute: BookRoute,
   ConsultingRoute: ConsultingRoute,
+  ContactRoute: ContactRoute,
   DashboardRoute: DashboardRoute,
+  DashboardsRoute: DashboardsRoute,
   FaqRoute: FaqRoute,
+  MarketingRoute: MarketingRoute,
+  PhilosophyRoute: PhilosophyRoute,
   PricingRoute: PricingRoute,
   PrivacyRoute: PrivacyRoute,
   ProductsRoute: ProductsRoute,
+  StoreRoute: StoreRoute,
   StrategyRoute: StrategyRoute,
   TermsRoute: TermsRoute,
   WebsitesRoute: WebsitesRoute,

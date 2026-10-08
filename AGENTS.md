@@ -30,7 +30,8 @@ AI AGENCY XYZ is a responsive SaaS marketing site and client dashboard for an AI
 
 - `/` — homepage (2026 redesign): three-object triptych, Why XYZ axis, About, CTA
 - `/agents` — AI Answering Agents page (redesign) including the live "Talk to it" demo (`src/components/DemoCall.tsx`); `/agent` redirects to `/agents#demo`
-- `/strategy`, `/websites`, `/about`, `/book`, `/privacy`, `/terms` — honest "coming soon" stubs (`src/components/StubPage.tsx`); `/book?plan=` prefills the plan
+- `/websites`, `/dashboards`, `/marketing`, `/strategy`, `/philosophy`, `/store`, `/contact`, `/book`, `/privacy`, `/terms` — honest "coming soon" stubs (`src/components/StubPage.tsx`); `/book?plan=` prefills the plan; `/about` redirects to `/philosophy`
+- Header nav mirrors the Shopify "Main menu" (aiagencyxyz.myshopify.com): Services dropdown (`SERVICES` in `XyzChrome.tsx`), Philosophy, Store, Contact
 - `/pricing` — four plan levels and startup-fee guidance
 - `/products` — Printify-ready product catalog presentation
 - `/consulting` — implementation and consulting services

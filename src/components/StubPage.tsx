@@ -8,9 +8,9 @@ export function StubPage({ eyebrow, title, accent, body, children }: { eyebrow: 
     <div className="xyz">
       <XyzHeader />
       <main className="stub">
-        <p className="eyebrow" style={{ color: 'var(--x-orange)' }}>{eyebrow}</p>
+        <p className="eyebrow" style={{ color: 'var(--x-accent)' }}>{eyebrow}</p>
         <h1 className="disp h-lg">
-          {title} {accent && <em style={{ color: 'var(--x-orange)' }}>{accent}</em>}
+          {title} {accent && <em style={{ color: 'var(--x-accent)' }}>{accent}</em>}
         </h1>
         <p className="copy" style={{ maxWidth: 720 }}>{body}</p>
         {children ?? (

@@ -1,13 +1,52 @@
 import { Link } from '@tanstack/react-router'
-import { Menu, X } from 'lucide-react'
-import { useState } from 'react'
+import { ChevronDown, Menu, X } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+
+// Mirrors the Shopify "Main menu" (aiagencyxyz.myshopify.com).
+export const SERVICES = [
+  { label: 'AI Answering Agents', to: '/agents' },
+  { label: 'AI-Enabled Websites', to: '/websites' },
+  { label: 'AI Data Dashboards', to: '/dashboards' },
+  { label: 'AI-Optimized Marketing', to: '/marketing' },
+  { label: 'AI Strategy & Training', to: '/strategy' },
+] as const
 
 const NAV = [
-  { label: 'Agents', to: '/agents' },
-  { label: 'Strategy', to: '/strategy' },
-  { label: 'Websites', to: '/websites' },
-  { label: 'About', to: '/about' },
+  { label: 'Philosophy', to: '/philosophy' },
+  { label: 'Store', to: '/store' },
+  { label: 'Contact', to: '/contact' },
 ] as const
+
+function ServicesMenu() {
+  const [open, setOpen] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    if (!open) return
+    const close = (e: MouseEvent | KeyboardEvent) => {
+      if (e instanceof KeyboardEvent ? e.key === 'Escape' : !ref.current?.contains(e.target as Node)) setOpen(false)
+    }
+    document.addEventListener('mousedown', close)
+    document.addEventListener('keydown', close)
+    return () => {
+      document.removeEventListener('mousedown', close)
+      document.removeEventListener('keydown', close)
+    }
+  }, [open])
+  return (
+    <div className="services" ref={ref}>
+      <button type="button" className="navlink" aria-expanded={open} aria-controls="services-menu" onClick={() => setOpen(!open)}>
+        Services <ChevronDown size={18} aria-hidden="true" />
+      </button>
+      {open && (
+        <div id="services-menu" className="services-menu">
+          {SERVICES.map((n) => (
+            <Link key={n.to} to={n.to} className="navlink" onClick={() => setOpen(false)}>{n.label}</Link>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
 
 export function XyzHeader({ cta = { label: 'Book a call', to: '/book' } }: { cta?: { label: string; to: string; hash?: string } }) {
   const [open, setOpen] = useState(false)
@@ -17,6 +56,7 @@ export function XyzHeader({ cta = { label: 'Book a call', to: '/book' } }: { cta
         <img src="/brand/logo-wordmark.webp" alt="AI Agency XYZ" width={260} height={40} />
       </Link>
       <nav aria-label="Main">
+        <ServicesMenu />
         {NAV.map((n) => (
           <Link key={n.to} to={n.to} className="navlink">{n.label}</Link>
         ))}
@@ -30,6 +70,11 @@ export function XyzHeader({ cta = { label: 'Book a call', to: '/book' } }: { cta
       </button>
       {open && (
         <nav className="mobile-menu" aria-label="Mobile">
+          <p className="menu-label">Services</p>
+          {SERVICES.map((n) => (
+            <Link key={n.to} to={n.to} className="navlink" onClick={() => setOpen(false)}>{n.label}</Link>
+          ))}
+          <hr />
           {NAV.map((n) => (
             <Link key={n.to} to={n.to} className="navlink" onClick={() => setOpen(false)}>{n.label}</Link>
           ))}
@@ -46,7 +91,7 @@ export function XyzFooter() {
     <footer className="xyz xyz-footer">
       <img src="/brand/logo-wordmark.webp" alt="AI Agency XYZ" width={220} height={34} loading="lazy" />
       <nav aria-label="Footer">
-        {NAV.map((n) => (
+        {[...SERVICES, ...NAV].map((n) => (
           <Link key={n.to} to={n.to} className="navlink">{n.label}</Link>
         ))}
         <Link to="/dashboard" className="navlink">Log in</Link>

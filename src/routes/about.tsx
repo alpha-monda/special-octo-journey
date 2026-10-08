@@ -1,9 +1,8 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { StubPage } from '@/components/StubPage'
+import { createFileRoute, redirect } from '@tanstack/react-router'
 
+// "About" became the Human-First AI Philosophy page. Keep old links working.
 export const Route = createFileRoute('/about')({
-  head: () => ({ meta: [{ title: 'About | AI Agency XYZ' }] }),
-  component: () => (
-    <StubPage eyebrow="About us" title="Human-centered." accent="AI-supported." body="We design around your people. AI does the heavy lifting. The full story is coming soon." />
-  ),
+  beforeLoad: () => {
+    throw redirect({ to: '/philosophy', statusCode: 301 })
+  },
 })
