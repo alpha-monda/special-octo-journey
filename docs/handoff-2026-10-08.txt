@@ -1,0 +1,121 @@
+AI AGENCY XYZ — PROJECT HANDOFF (as of Oct 8, 2026)
+=====================================================
+Plain-language summary of where everything stands. No passwords or keys are in
+this file — those live only in Netlify / Retell / Cloudflare / Hostinger.
+
+
+1. THE BIG PICTURE (decided Oct 8)
+----------------------------------
+ONE website for visitors: aiagencyxyz.com
+  - aiagencyxyz.com            -> will move to SHOPIFY (service pages, blog, store).
+                                  Monda can edit text/photos/menus herself there.
+  - agents.aiagencyxyz.com     -> NETLIFY. The "behind the scenes" stuff Shopify
+                                  can't run: demo call engine, admin, call emails,
+                                  database. Later: customer logins + checkout.
+
+Why: Monda wants direct control over pages (Shopify) and only one site.
+The demo call can still appear ON the Shopify Agents page (form runs in the
+page; the secret part runs on agents.aiagencyxyz.com). No iframes needed.
+
+
+2. WHAT'S LIVE RIGHT NOW
+------------------------
+aiagencyxyz.com (Netlify, published Oct 8):
+  - Redesigned homepage + Agents page (headphones/mug/mouse "trifecta")
+  - Live "Talk to it" demo call (name + business name only; "2 of 25+ settings")
+  - "After every call" section (example email + text summary)
+  - Menu: Services (5) / Philosophy / Store / Contact (mirrors Shopify menu)
+  - "Coming soon" pages: Websites, Dashboards, Marketing, Strategy, Philosophy,
+    Store, Contact, Privacy, Terms
+  - Admin: aiagencyxyz.com/admin (needs ADMIN_PASSWORD set in Netlify)
+
+Demo call emails: summary + transcript go to aiagencyxyz@gmail.com and
+hello@aiagencyxyz.com, sent from hello@ via Hostinger email.
+
+
+3. SHOPIFY (aiagencyxyz.myshopify.com) — still on TRIAL, password-protected
+---------------------------------------------------------------------------
+Themes:
+  - "Taste - XYZ build (working copy)"   = currently live in Shopify
+  - "Taste - XYZ build v2 (pages)"       = NEWER. Has everything above PLUS:
+        * Trifecta at top of homepage (Agents / Strategy & Training / Websites)
+          each with "Learn more ->"
+        * Page templates for AI Strategy & Training and AI-Enabled Websites
+  -> To go live: Online Store > Themes > v2 > ... > Publish
+  -> Make future text tweaks in v2 (edits to the old one won't carry over)
+
+Pages: Contact, AI Answering Agents (UNPUBLISHED — set Visible or its link 404s),
+       AI Strategy & Training (new), AI-Enabled Websites (new)
+Products (drafts): $67 DIY guide, $997 Done For You, $1,497 DFY + Consulting
+Menu (Main menu): Home, AI Answering Agents, AI Enabled Websites, AI Data
+       Dashboards, AI Optimized Marketing, AI Strategy & Training, Human-First AI
+       Philosophy, AI Fans Store, Contact
+
+Claude can edit UNPUBLISHED Shopify themes only (Shopify blocks edits to the
+live theme). Publishing a theme is a manual click by Monda.
+
+
+4. OPEN DECISION — PRICING CONFLICT
+-----------------------------------
+Shopify site sells ONE-TIME: $67 guide / $997 setup / $1,497 setup+consulting,
+and says "No monthly fee from us" + "accounts set up in your name".
+Netlify site sells MONTHLY: Solo $29 / Assisted $99 / Growth $249 / Office $500+,
+where XYZ runs the agent + phone number.
+Options: monthly only / one-time only / both (reword the two conflicting lines).
+Monda hasn't picked yet.
+
+
+5. DOMAIN / DNS FACTS
+---------------------
+  - Domain registered at GoDaddy.
+  - DNS is actually controlled by NETLIFY ("Netlify DNS"), not Hostinger.
+    (A CNAME for "agents" was also added in Hostinger — harmless, unused.)
+  - agents.aiagencyxyz.com added as a domain alias in Netlify (Oct 8).
+    Check it loads with a padlock.
+  - When switching aiagencyxyz.com to Shopify, change records IN NETLIFY DNS.
+    Do NOT click Hostinger's "Shopify quick setup" button.
+  - Hostinger still hosts the hello@aiagencyxyz.com mailbox — keep email records.
+
+
+6. TO-DO LIST
+-------------
+Monda:
+  [ ] Confirm https://agents.aiagencyxyz.com loads
+  [ ] Cloudflare > Turnstile > widget > Hostnames: add agents.aiagencyxyz.com
+  [ ] Netlify env var ADMIN_PASSWORD (12+ chars, secret) then redeploy
+  [ ] Add a card in Retell (Billing) — needed before creating customer agents
+  [ ] Preview + publish Shopify theme v2; set AI Answering Agents page Visible
+  [ ] Decide pricing (section 4)
+  [ ] Minutes included per plan + overage rate (if monthly plans stay)
+  [ ] Pick a Shopify plan (needed to go public + connect the domain)
+  [ ] Rotate the hello@ mailbox password, update SMTP_PASSWORD in Netlify
+  [ ] Text summaries need carrier registration (A2P 10DLC) before launch
+
+Claude (next session):
+  [ ] Point Retell demo webhook + app URLs at agents.aiagencyxyz.com
+  [ ] Let the Shopify Agents page run the demo (call agents.aiagencyxyz.com)
+  [ ] Build remaining Shopify pages: Dashboards, Marketing, Philosophy, Store
+  [ ] Walk Monda through switching aiagencyxyz.com to Shopify (in Netlify DNS)
+  [ ] Later: Stripe checkout, customer login, setup wizard, customer dashboard
+
+
+7. BRAND NOTES
+--------------
+  - Orange #F64D06 (matched to the headphones). Text only black, white, orange.
+    A page may use another palette color for accent (e.g. green for Websites).
+  - Fonts: Fraunces (headlines), Work Sans (body), Fredoka (button/bubble text).
+  - Logo: "ai agency XYZ" wordmark (public/brand/logo-wordmark.webp).
+  - Headphones = Agents, Mug = Strategy & Training, Mouse = Websites.
+
+Merch idea in progress: sweatshirt "did you ask ai?" — JetBrains Mono bold,
+lowercase, styled like a prompt "> did you ask ai?_", green-screen #33FF33 on
+black (or "ai" in brand orange). Order a sample — bright greens print duller.
+
+
+8. WHERE THINGS LIVE
+--------------------
+  - Code: github.com/alpha-monda/special-octo-journey
+      live branch: claude/xyz-answering-agent-build-s69esw
+      preview branch: design-refresh
+  - Netlify project: aiagencyxyz
+  - Build plan: docs/build-plan.md   Demo agent setup: docs/retell-demo-agent.md
