@@ -31,6 +31,7 @@ import { Route as AdminRouteRouteImport } from './routes/admin/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as ApiRetellTestRouteImport } from './routes/api/retell-test'
+import { Route as ApiProvisionRouteImport } from './routes/api/provision'
 import { Route as AdminNewRouteImport } from './routes/admin/new'
 import { Route as AdminLoginRouteImport } from './routes/admin/login'
 import { Route as ApiRetellWebhookRouteImport } from './routes/api/retell/webhook'
@@ -147,6 +148,11 @@ const ApiRetellTestRoute = ApiRetellTestRouteImport.update({
   path: '/api/retell-test',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiProvisionRoute = ApiProvisionRouteImport.update({
+  id: '/api/provision',
+  path: '/api/provision',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminNewRoute = AdminNewRouteImport.update({
   id: '/new',
   path: '/new',
@@ -196,6 +202,7 @@ export interface FileRoutesByFullPath {
   '/websites': typeof WebsitesRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/new': typeof AdminNewRoute
+  '/api/provision': typeof ApiProvisionRoute
   '/api/retell-test': typeof ApiRetellTestRoute
   '/admin/': typeof AdminIndexRoute
   '/admin/customers/$id': typeof AdminCustomersIdRoute
@@ -224,6 +231,7 @@ export interface FileRoutesByTo {
   '/websites': typeof WebsitesRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/new': typeof AdminNewRoute
+  '/api/provision': typeof ApiProvisionRoute
   '/api/retell-test': typeof ApiRetellTestRoute
   '/admin': typeof AdminIndexRoute
   '/admin/customers/$id': typeof AdminCustomersIdRoute
@@ -254,6 +262,7 @@ export interface FileRoutesById {
   '/websites': typeof WebsitesRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/new': typeof AdminNewRoute
+  '/api/provision': typeof ApiProvisionRoute
   '/api/retell-test': typeof ApiRetellTestRoute
   '/admin/': typeof AdminIndexRoute
   '/admin/customers/$id': typeof AdminCustomersIdRoute
@@ -285,6 +294,7 @@ export interface FileRouteTypes {
     | '/websites'
     | '/admin/login'
     | '/admin/new'
+    | '/api/provision'
     | '/api/retell-test'
     | '/admin/'
     | '/admin/customers/$id'
@@ -313,6 +323,7 @@ export interface FileRouteTypes {
     | '/websites'
     | '/admin/login'
     | '/admin/new'
+    | '/api/provision'
     | '/api/retell-test'
     | '/admin'
     | '/admin/customers/$id'
@@ -342,6 +353,7 @@ export interface FileRouteTypes {
     | '/websites'
     | '/admin/login'
     | '/admin/new'
+    | '/api/provision'
     | '/api/retell-test'
     | '/admin/'
     | '/admin/customers/$id'
@@ -370,6 +382,7 @@ export interface RootRouteChildren {
   StrategyRoute: typeof StrategyRoute
   TermsRoute: typeof TermsRoute
   WebsitesRoute: typeof WebsitesRoute
+  ApiProvisionRoute: typeof ApiProvisionRoute
   ApiRetellTestRoute: typeof ApiRetellTestRoute
   ApiDemoWebCallRoute: typeof ApiDemoWebCallRoute
   ApiRetellWebhookRoute: typeof ApiRetellWebhookRoute
@@ -531,6 +544,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiRetellTestRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/provision': {
+      id: '/api/provision'
+      path: '/api/provision'
+      fullPath: '/api/provision'
+      preLoaderRoute: typeof ApiProvisionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/new': {
       id: '/admin/new'
       path: '/new'
@@ -608,6 +628,7 @@ const rootRouteChildren: RootRouteChildren = {
   StrategyRoute: StrategyRoute,
   TermsRoute: TermsRoute,
   WebsitesRoute: WebsitesRoute,
+  ApiProvisionRoute: ApiProvisionRoute,
   ApiRetellTestRoute: ApiRetellTestRoute,
   ApiDemoWebCallRoute: ApiDemoWebCallRoute,
   ApiRetellWebhookRoute: ApiRetellWebhookRoute,

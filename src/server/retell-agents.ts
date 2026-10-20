@@ -88,6 +88,22 @@ export async function provisionAgent(s: AgentSettings, opts: { areaCode?: number
   }
 }
 
+// Creates LLM → agent only (no phone number). Deletes the LLM if the agent fails.
+export async function createLlmAndAgent(s: AgentSettings): Promise<{ llmId: string; agentId: string }> {
+  const retell = retellClient()
+  let llmId: string | undefined
+  try {
+    const llm = await retell.llm.create(llmParams(s))
+    llmId = llm.llm_id
+    const agent = await retell.agent.create({ ...agentParams(s), response_engine: { type: 'retell-llm', llm_id: llm.llm_id } })
+    return { llmId, agentId: agent.agent_id }
+  } catch (error) {
+    if (llmId) await retell.llm.delete(llmId).catch((e) => console.error('rollback: llm delete failed', llmId, e))
+    const detail = error instanceof Error ? error.message : String(error)
+    throw new ProvisionError(`Retell failed while creating the ${llmId ? 'agent' : 'agent brain'}: ${detail}`, llmId ? 'agent' : 'llm', error)
+  }
+}
+
 // Undoes a successful provisionAgent (e.g. if saving the result failed) so
 // nothing is left billing without a customer attached.
 export async function releaseProvisioned(result: ProvisionResult) {
